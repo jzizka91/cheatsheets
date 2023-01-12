@@ -1,22 +1,18 @@
-
 ### Install NFS Provisioners:
 
 ```
 helm install nfs-provisioner-mle nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
-    --set nfs.server=nas.lely.dtml \
-    --set nfs.path=/storage/nfsshare/data/MachineLearningEngineering \
-    --set storageClass.name=nfsshare-mle \
-    --set storageClass.provisionerName=k8s-sigs.io/nfs-provisioner-mle
+    --set nfs.server=<nfs-server-name> \
+    --set nfs.path=<nfs-path> \
+    --set storageClass.name=<storageClass-name> \
+    --set storageClass.provisionerName=k8s-sigs.io/<storageClass-provisioner-name>
 ```
 
 ### Install Nginx Ingress:
 
 ```
 helm install ingress-nginx ingress-nginx/ingress-nginx \
-  --set controller.kind=Deployment \
-  --set controller.service.type=NodePort \
-  --set controller.nodeSelector."kubernetes\.io/hostname"=n3 \
-  --set controller.hostPort.enabled=true \
+  --set controller.replicaCount=2 \
   --set controller.metrics.enabled=true \
   --namespace kube-system
 ```
