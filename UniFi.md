@@ -1,12 +1,12 @@
 
-### ADOPT all UniFi Wifi:
+### ADOPT multiple ranges of UniFi Wifi:
 
 ```
-for host in $(echo {11..23}); do echo "10.7.31.$host is adopting" && ssh <ap_user>@10.7.31.$host 'mca-cli-op set-inform http://unificontroller.dtml:8080/inform'; done
+for host in $(echo {43..47} {53..56}) {63..66}; do echo "10.7.20.$host is adopting" && ssh <username>@10.7.20.$host 'mca-cli-op set-inform http://10.7.31.32:8080/inform'; done
 ```
 
-### REBOOT all UniFi Wifi:
+### REBOOT multiple ranges of UniFi Wifi:
 
 ```
-for host in $(echo {11..23}); do echo "10.7.31.$host is adopting" && ssh <ap_user>@10.7.31.$host 'reboot; done
+for host in $(echo {43..47} {53..56} {63..66}); do echo "10.7.20.$host is restarting" && ssh <username>@10.7.20.$host 'reboot; done
 ```

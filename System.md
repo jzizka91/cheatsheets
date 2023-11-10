@@ -88,10 +88,10 @@ done
 ### Reverse SSH Tunneling:
 
 ```
-ssh -A root@<server> # Client Machine
-ssh -N -R 44444:localhost:22 root@<server> -p 2221 # NAS Node
-ssh -N -L 44444:localhost:44444 root@<server> -p 2221 # Client Machine
-ssh root@localhost -p 44444 # Client Machine
+ssh -A root@<server> # On client machine
+ssh -N -R 44444:localhost:22 root@<server> # On endpoint server
+ssh -N -L 44444:localhost:44444 root@<server> # On client machine
+ssh root@localhost -p 44444 # On client machine
 ```
 
 ### Use NIC Mac address as the default ID for DHCP requests:
@@ -123,4 +123,31 @@ for ks_name in $(ls $path); do
    echo "$ks_date"_"$ks_name"
   done
 done
+```
+
+## Install JDK 6 & Java Web Start usage
+
+```
+# Download JDK 6 from the Oracle archive -> jdk-6u45-linux-x64.bin (you will need to register):
+https://www.oracle.com/java/technologies/javase-java-archive-javase6-downloads.html#license-lightbox
+
+# Run the bin
+./jdk-6u45-linux-x64.bin
+
+# Create JVM directory if it doesn't exist yet:
+mkdir /usr/lib/jvm
+
+# Rename/move JDK:
+mv jdk-6u45-linux-x64.bin /usr/lib/jvm/java-6-oracle
+
+# Update-alternatives:
+sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/java-6-oracle/bin/java" 1
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/java-6-oracle/bin/javac" 1
+sudo update-alternatives --install "/usr/bin/javaws" "javaws" "/usr/lib/jvm/java-6-oracle/bin/javaws" 1
+
+# Change permissions:
+sudo chmod a+x /usr/bin/java
+sudo chmod a+x /usr/bin/javac
+# Open Console:
+javaws <path-to-jnlp-file>
 ```
