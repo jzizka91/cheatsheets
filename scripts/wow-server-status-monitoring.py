@@ -26,7 +26,7 @@ PUSHOVER_USER = "<PUSHOVER_USER>"
 TIMEZONE = ZoneInfo("Europe/Prague")
 STATE_FILE = "server_status.json"
 LOG_DIR = "logs"
-SERVER_NAME = "Kezan"
+SERVER_NAME = "<SERVER_NAME>"
 
 ENABLE_PUSHOVER = True
 ENABLE_LAUNCHER_CHECK = True
